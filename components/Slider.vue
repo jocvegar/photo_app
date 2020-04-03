@@ -5,8 +5,8 @@
         <div class="container">
           <div class="columns">
             <div class="column is-8 is-offset-2">
-              <figure class="image is-16by9">
-                <img :src="primarySrc">
+              <figure class="image">
+                 <img :src="primarySrc">
               </figure>
             </div>
           </div>
@@ -16,7 +16,7 @@
     <div class="is-divider"></div>
     <section> 
       <vueper-slides
-        class="no-shadow"
+        class="no-shadow slides-container"
         :visible-slides="4"
         :slide-multiple="false"
         fractions
@@ -26,17 +26,17 @@
         lazy-load-on-drag
         :gap="3"
         :arrows-outside="false"
-        :slide-ratio="1 / 4"
+        :slide-ratio="1 / 8"
+        :bullets="false"
         :dragging-distance="200"
         @autoplay-pause="internalAutoPlaying = false"
         @autoplay-resume="internalAutoPlaying = true"
         :breakpoints="{ 800: { visibleSlides: 3 } }"
         @slide="updateImageFromSlide($event.currentSlide)">
-        <vueper-slide v-for="(slide, i) in slides" 
+        <vueper-slide v-for="(slide, i) in slides"
           :key="i" 
-          :title="slide.title" 
-          :image="slide.src"
-          @click.native="updateImageFromClick(slide)"/>
+          :image="require(`~/assets/images/pic_${slide.src}.jpg`)"
+          @click.native.prevent="updateImageFromClick(slide)"/>
       </vueper-slides>
     </section>
   </div>
@@ -45,79 +45,33 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+let dataSet = []
 
 export default {
   components: { VueperSlides, VueperSlide },
   data: () => ({
-  primarySrc: '',
-  slides: [
-    {
-      title: 'Slide #1',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/32d160/FFFFFF'
+    primarySrc: '',
+    slideConstructor: [],
+    slides: dataSet,
+  }),
+  methods: {
+    updateImageFromClick(slide) { 
+      this.primarySrc = require(`~/assets/images/pic_${slide.src}.jpg`)   
     },
-    {
-      title: 'Slide #2',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/E6A2FF/FFFFFF'
-    },
-    {
-      title: 'Slide #3',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/ffe500/FFFFFF'
-    },
-    {
-      title: 'Slide #4',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/DDBBFF/FFFFFF'
-    },
-    {
-      title: 'Slide #5',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/FF7145/FFFFFF'
-    },
-    {
-      title: 'Slide #6',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/A2C423/FFFFFF'
-    },
-    {
-      title: 'Slide #7',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/7C4326/FFFFFF'
-    },
-    {
-      title: 'Slide #8',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/2E4500/FFFFFF'
-    },
-    {
-      title: 'Slide #9',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/CCF4FE/FFFFFF'
-    },
-    {
-      title: 'Slide #10',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/924F9E/FFFFFF'
-    },
-    {
-      title: 'Slide #11',
-      content: 'Slide content.',
-      src: 'https://via.placeholder.com/150/D93D27/FFFFFF'
+    updateImageFromSlide(slide) {
+      console.log(slide)
+      this.primarySrc = require(`~/assets/images/pic_${slide.index + 1}.jpg`)   
     }
-  ],
-}),
-methods: {
-  updateImageFromClick(slide) { 
-    // console.log(slide)
-    this.primarySrc = slide.src
   },
-  updateImageFromSlide(slide) {
-    this.primarySrc = slide.image
+  created() {
+    this.primarySrc = require(`~/assets/images/pic_1.jpg`) 
+  },
+  beforeCreate() {
+    let arr = new Array(126).join().split(',').map(function(item, index){ return ++index;})
+    arr.forEach(num => {
+      dataSet.push({ src: num.toString() })
+    })
   }
-}
-  
 }
 </script>
 
@@ -127,5 +81,8 @@ methods: {
   .vueperslides__progress {
     background: rgba(0, 0, 0, 0.25);
     color: #DBDBDB;
+  }
+  .slides-container {
+    padding-bottom: 5em;
   }
 </style>

@@ -13,11 +13,12 @@
 </template>
 
 <script>
+
 import Slider from '~/components/Slider.vue'
 export default {
   components: {
     Slider,
-  }
+  },
 }
 </script>
 
@@ -35,5 +36,8 @@ export default {
   font-weight: 300;
   word-spacing: 5px;
   padding-bottom: 15px;
+}
+.big-me {
+  height: 100vh;
 }
 </style>
