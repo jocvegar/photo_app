@@ -59,7 +59,7 @@ export default {
       this.primarySrc = require(`~/assets/images/pic_${slide.src}.jpg`)   
     },
     updateImageFromSlide(slide) {
-      console.log(slide)
+      // console.log(slide)
       this.primarySrc = require(`~/assets/images/pic_${slide.index + 1}.jpg`)   
     }
   },
