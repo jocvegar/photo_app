@@ -18,7 +18,7 @@
       <vueper-slides
         class="no-shadow slides-container"
         :visible-slides="4"
-        :slide-multiple="false"
+        :slide-multiple="true"
         fractions
         autoplay
         progress
