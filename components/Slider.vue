@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero ">
+    <section class="hero">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
@@ -30,7 +30,7 @@
         :dragging-distance="200"
         @autoplay-pause="internalAutoPlaying = false"
         @autoplay-resume="internalAutoPlaying = true"
-        :breakpoints="{ 800: { visibleSlides: 3, slideMultiple: 1 } }"
+        :breakpoints="{ 800: { visibleSlides: 3 } }"
         @slide="updateImageFromSlide($event.currentSlide)">
         <vueper-slide v-for="(slide, i) in slides" 
           :key="i" 
@@ -128,18 +128,4 @@ methods: {
     background: rgba(0, 0, 0, 0.25);
     color: #DBDBDB;
   }
-
-  .vueperslide--active:before {
-  content: 'This slide is active!';
-  position: absolute;
-  top: -18px;
-  right: -18px;
-  padding: 4px 25px;
-  background: orange;
-  color: #fff;
-  font-size: 10px;
-  transform: translateX(30%) rotate(45deg);
-  transform-origin: 0 0;
-  box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
-}
 </style>

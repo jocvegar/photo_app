@@ -1,27 +1,18 @@
 <template>
-    <div class="container">
-        <section class="section has-text-centered">
-        <div class="container">
-            <h1 class="title has-text-success">Section</h1>
-            <h2 class="subtitle has-text-white-ter">
-                A simple container to divide your page into sections, like the one you're currently reading
-            </h2>
-        </div>
-        <slider></slider>
+    <div class="container big-me">
+        <section class="section has-text-centered has-text-white-ter">
+            Solo me quedo como about
         </section>
     </div>
 </template>
 
 <style lang="scss">
+.big-me {
+  height: 100vh;
+}
 </style>
 
 <script>
-import Slider from '~/components/Slider.vue'
-
 export default {
-  components: {
-    Slider,
-  }
 }
-
 </script>
