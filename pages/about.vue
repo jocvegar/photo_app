@@ -8,7 +8,7 @@
             </h2>
         </div>
         <slider></slider>
-    </section>
+        </section>
     </div>
 </template>
 
@@ -17,12 +17,10 @@
 
 <script>
 import Slider from '~/components/Slider.vue'
-import Photo from '~/components/Photo.vue'
 
 export default {
   components: {
     Slider,
-    Photo
   }
 }
 

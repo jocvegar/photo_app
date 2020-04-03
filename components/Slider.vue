@@ -18,17 +18,25 @@
       <vueper-slides
         class="no-shadow"
         :visible-slides="4"
-        slide-multiple
+        :slide-multiple="false"
+        fractions
+        autoplay
+        progress
+        lazy 
+        lazy-load-on-drag
         :gap="3"
         :arrows-outside="false"
         :slide-ratio="1 / 4"
         :dragging-distance="200"
-        :breakpoints="{ 800: { visibleSlides: 3, slideMultiple: 1 } }">
+        @autoplay-pause="internalAutoPlaying = false"
+        @autoplay-resume="internalAutoPlaying = true"
+        :breakpoints="{ 800: { visibleSlides: 3, slideMultiple: 1 } }"
+        @slide="updateImageFromSlide($event.currentSlide)">
         <vueper-slide v-for="(slide, i) in slides" 
           :key="i" 
           :title="slide.title" 
           :image="slide.src"
-          @click.native="handleClick(slide)"/>
+          @click.native="updateImageFromClick(slide)"/>
       </vueper-slides>
     </section>
   </div>
@@ -101,9 +109,12 @@ export default {
   ],
 }),
 methods: {
-  handleClick(slide) { 
-    console.log(slide)
+  updateImageFromClick(slide) { 
+    // console.log(slide)
     this.primarySrc = slide.src
+  },
+  updateImageFromSlide(slide) {
+    this.primarySrc = slide.image
   }
 }
   
@@ -113,4 +124,22 @@ methods: {
 <style>
   .vueperslides__arrow {color: white}
   .vueperslides__arrow svg {stroke-width: 2;}
+  .vueperslides__progress {
+    background: rgba(0, 0, 0, 0.25);
+    color: #DBDBDB;
+  }
+
+  .vueperslide--active:before {
+  content: 'This slide is active!';
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  padding: 4px 25px;
+  background: orange;
+  color: #fff;
+  font-size: 10px;
+  transform: translateX(30%) rotate(45deg);
+  transform-origin: 0 0;
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
+}
 </style>
