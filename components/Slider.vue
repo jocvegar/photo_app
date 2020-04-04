@@ -15,7 +15,7 @@
     </section>  
     <!-- <div class="column is-6 is-offset-3"> -->
       <button 
-          class="button is-dark is-outlined is-rounded is-small"
+          class="button is-success is-outlined is-rounded is-normal"
           @click="$refs.myVueperSlides[`${autoPlaying ? 'pause' : 'resume'}Autoplay`]();autoPlaying = !autoPlaying">
           {{ autoPlaying ? 'Pause' : 'Resume' }}
         </button>
