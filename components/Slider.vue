@@ -13,14 +13,22 @@
         </div>
       </div>  
     </section>  
+    <div class="column is-6 is-offset-3">
+      <button 
+          class="button is-dark is-medium is-fullwidth"
+          @click="$refs.myVueperSlides[`${autoPlaying ? 'pause' : 'resume'}Autoplay`]();autoPlaying = !autoPlaying">
+          {{ autoPlaying ? 'Pause' : 'Resume' }}
+        </button>
+    </div>  
+      <br>
     <div class="is-divider"></div>
     <section> 
       <vueper-slides
+        ref="myVueperSlides"
         class="no-shadow slides-container"
         :visible-slides="4"
-        :slide-multiple="true"
+        :slide-multiple="false"
         fractions
-        autoplay
         progress
         lazy 
         lazy-load-on-drag
@@ -29,6 +37,7 @@
         :slide-ratio="1 / 8"
         :bullets="false"
         :dragging-distance="200"
+        autoplay
         @autoplay-pause="internalAutoPlaying = false"
         @autoplay-resume="internalAutoPlaying = true"
         :breakpoints="{ 800: { visibleSlides: 3 } }"
@@ -38,6 +47,7 @@
           :image="require(`~/assets/images/pic_${slide.src}.jpg`)"
           @click.native.prevent="updateImageFromClick(slide)"/>
       </vueper-slides>
+      <br>
     </section>
   </div>
 </template>
@@ -50,6 +60,8 @@ let dataSet = []
 export default {
   components: { VueperSlides, VueperSlide },
   data: () => ({
+    autoPlaying: true,
+    internalAutoPlaying: true,
     primarySrc: '',
     slideConstructor: [],
     slides: dataSet,
@@ -64,7 +76,7 @@ export default {
     }
   },
   created() {
-    this.primarySrc = require(`~/assets/images/pic_1.jpg`) 
+    this.primarySrc = require('~/assets/images/pic_1.jpg') 
   },
   beforeCreate() {
     let arr = new Array(126).join().split(',').map(function(item, index){ return ++index;})
