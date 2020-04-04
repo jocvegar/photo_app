@@ -13,13 +13,13 @@
         </div>
       </div>  
     </section>  
-    <div class="column is-6 is-offset-3">
+    <!-- <div class="column is-6 is-offset-3"> -->
       <button 
-          class="button is-dark is-medium is-fullwidth"
+          class="button is-dark is-outlined is-rounded is-small"
           @click="$refs.myVueperSlides[`${autoPlaying ? 'pause' : 'resume'}Autoplay`]();autoPlaying = !autoPlaying">
           {{ autoPlaying ? 'Pause' : 'Resume' }}
         </button>
-    </div>  
+    <!-- </div>   -->
       <br>
     <div class="is-divider"></div>
     <section> 
