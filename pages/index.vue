@@ -4,8 +4,11 @@
       <h1 class="title">
         eFe
       </h1>
-      <h4 class="subtitle has-text-grey-lighter">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, dolores? Neque dolorem repellendus, voluptas eveniet sequi expedita voluptate iste sit nemo, reiciendis doloribus, minus magni magnam omnis unde necessitatibus asperiores.
+      <h4 class="subtitle has-text-grey-lighter has-text-weight-semibold">
+        "Pedacitos de tiempo que vivimos con cada persona [...] No importa la cantidad de tiempo que pasamos con cada amigo, si no la calidad del tiempo que vivimos con él [...] Cinco minutos pueden tener una importancia mayor que un día entero..." 
+        <br>
+        <br>
+        -El Principito
       </h4>
       <slider></slider>
     </div>
@@ -36,6 +39,7 @@ export default {
   font-weight: 300;
   word-spacing: 5px;
   padding-bottom: 15px;
+  padding-top: 15px;
 }
 .big-me {
   height: 100vh;

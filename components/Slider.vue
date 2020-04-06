@@ -40,7 +40,7 @@
         autoplay
         @autoplay-pause="internalAutoPlaying = false"
         @autoplay-resume="internalAutoPlaying = true"
-        :breakpoints="{ 800: { visibleSlides: 3 } }"
+        :breakpoints="{ 800: { visibleSlides: 3, slideMultiple: 3 } }"
         @slide="updateImageFromSlide($event.currentSlide)">
         <vueper-slide v-for="(slide, i) in slides"
           :key="i" 
